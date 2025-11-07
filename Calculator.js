@@ -23,7 +23,7 @@ app.post('/calculate', (req, res) => {
 });
 
 
-app.listen(5100, (err) => {
+app.listen(5000, (err) => {
     if (err) console.log(err)
-    else console.log(5100)
+    else console.log(5000)
 })
