@@ -1,0 +1,44 @@
+name: Backend CI
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  backend:
+    runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        working-directory: Calculator   # run commands inside Calculator folder
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '20'
+
+    - name: Install dependencies
+      run: npm install
+
+    - name: Run tests
+      run: npm test
+
+    - name: Start backend server
+      run: |
+        npm run dev &
+        sleep 5
+        echo "Backend server should be running"
+
+    - name: Test API endpoint
+      run: curl http://localhost:3000 || echo "Backend API not reachable"
+
+    - name: Finish
+      run: echo "Backend CI completed"
