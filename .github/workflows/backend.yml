@@ -14,7 +14,7 @@ jobs:
 
     defaults:
       run:
-        working-directory: Calculator   # run commands inside Calculator folder
+        working-directory: CALCULATOR   # exact folder name in your repo
 
     steps:
     - name: Checkout repository
